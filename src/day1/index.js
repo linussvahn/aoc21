@@ -11,12 +11,9 @@ const sum = (inputs) => inputs && inputs.reduce((prev, curr) => prev + curr, 0)
 const part2 = measurements.filter((_m, i) => {
     const currentWindow = measurements.slice(i, i + 3)
     const prevWindow = measurements.slice(i - 1, i + 2)
-    const sumPrev = sum(prevWindow)
-    const sumCurr = sum(currentWindow)
     if (currentWindow.length === 3 && prevWindow.length === 3) {
-        return sumCurr > sumPrev
+        return sum(currentWindow) > sum(prevWindow)
     }
 }).length
-
 
 console.log({ part1, part2 })
