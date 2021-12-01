@@ -14,7 +14,7 @@
     "url": "git+https://github.com/linussvahn/aoc21.git"
   },
   "author": "Linus Svahn",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/linussvahn/aoc21/issues"
   },
