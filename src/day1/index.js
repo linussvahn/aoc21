@@ -6,7 +6,7 @@ const measurements = getArrayFromFile(text)
 
 const part1 = measurements.filter((measurement, i) => measurement > measurements[i - 1]).length
 
-const sum = (inputs) => inputs && inputs.reduce((prev, curr) => prev + curr, 0)
+const sum = (inputs) => inputs.reduce((prev, curr) => prev + curr, 0)
 
 const part2 = measurements.filter((_m, i) => {
     const currentWindow = measurements.slice(i, i + 3)
