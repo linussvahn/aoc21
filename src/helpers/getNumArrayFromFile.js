@@ -1,4 +1,4 @@
-const getArrayFromFile = (text) => {
+const getNumArrayFromFile = (text) => {
     try {
         var array = text.split('\n')
         var numArray = array.map((measurement) => parseInt(measurement, 10))
@@ -8,4 +8,4 @@ const getArrayFromFile = (text) => {
     }
 }
 
-module.exports = getArrayFromFile
+module.exports = getNumArrayFromFile

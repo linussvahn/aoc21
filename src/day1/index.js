@@ -1,8 +1,8 @@
 var fs = require('fs');
 var text = fs.readFileSync("./src/day1/data.txt", 'utf-8');
-const getArrayFromFile = require('../helpers/getArrayFromFile');
+const getNumArrayFromFile = require('../helpers/getNumArrayFromFile');
 
-const measurements = getArrayFromFile(text)
+const measurements = getNumArrayFromFile(text)
 
 const part1 = measurements.filter((measurement, i) => measurement > measurements[i - 1]).length
 
