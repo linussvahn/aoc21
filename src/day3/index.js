@@ -8,7 +8,7 @@ const getMostCommonOnIndex = (index, array) => {
     const allNumbersOnIndex = array.map((string) => string.slice(index, index + 1))
     const ones = allNumbersOnIndex.filter((number) => number === '1')
     const zeroes = allNumbersOnIndex.filter((number) => number === '0')
-    return ones.length > zeroes.length ? '1' : '0'
+    return ones.length >= zeroes.length ? '1' : '0'
 }
 
 const getLeastCommonOnIndex = (index, array) => {
@@ -20,23 +20,20 @@ const getLeastCommonOnIndex = (index, array) => {
 
 const getDecimal = (binary) => parseInt(binary, 2)
 
-const getGammaRate = (array) => {
-    const res = [...Array(array[0].length)].reduce((prev, _, i) => {
-        return ({ ...prev, [i]: getMostCommonOnIndex(i, array) })
-    }, []);
-    return getDecimal(Object.values(res).join(''))
-}
+const getGammaRate = (array) =>
+    getDecimal(Object.values([...Array(array[0].length)].reduce((prev, _, i) => ({ ...prev, [i]: getMostCommonOnIndex(i, array) }), [])).join(''))
 
-const getEpsilon = (array) => {
-    const res = [...Array(array[0].length)].reduce((prev, _, i) => {
-        return ({ ...prev, [i]: getLeastCommonOnIndex(i, array) })
-    }, []);
-    return getDecimal(Object.values(res).join(''))
-}
+const getEpsilonRate = (array) =>
+    getDecimal(Object.values([...Array(array[0].length)].reduce((prev, _, i) => ({ ...prev, [i]: getLeastCommonOnIndex(i, array) }), [])).join(''))
 
-const gamma = getGammaRate(data)
-const epsilon = getEpsilon(data)
+const part1 = getGammaRate(data) * getEpsilonRate(data)
 
-const part1 = gamma * epsilon
+const getOxygenGeneratorRating = (array) => getDecimal([...Array(array[0].length)].reduce((prev, _, i) =>
+    prev.length === 1 ? prev : prev.filter((number) => number.slice(i, i + 1) === getMostCommonOnIndex(i, prev, true)), array)[0])
 
-console.log({ part1 })
+const getCO2ScrubberRating = (array) => getDecimal([...Array(array[0].length)].reduce((prev, _, i) =>
+    prev.length === 1 ? prev : prev.filter((number) => number.slice(i, i + 1) === getLeastCommonOnIndex(i, prev, false)), array)[0])
+
+const part2 = getOxygenGeneratorRating(data) * getCO2ScrubberRating(data)
+
+console.log({ part1, part2 })
